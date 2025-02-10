@@ -1,0 +1,4 @@
+node_modules/
+.env
+.npm
+web_modules/
