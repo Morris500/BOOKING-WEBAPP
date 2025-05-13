@@ -1,32 +1,46 @@
-const express = require("express");
-const bodyparser = require("body-parser");
-const mongoose = require("mongoose");
-require("dotenv").config();
-const authrouter = require("./Routes/auth");
-const usersrouter = require("./Routes/users");
-const hotelsrouter = require("./Routes/hotels");
-const roomsrouter = require("./Routes/rooms");
+import express, { json, urlencoded } from "express";
+import bodyparser from "body-parser";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+import Hotel from "./models/hotel.js";
+
+import authrouter from "./Routes/auth.js";
+// const usersrouter = require("./Routes/users");
+import hotelsrouter from "./Routes/hotels.js";
+// const roomsrouter = require("./Routes/rooms");
 
 
 const app = express();
 const port = 3000;
 
+ app.use(json());
+ app.use(urlencoded({ extended: true }));
+
+
 const connect = async () => {
     try {
-        mongoose.connect(process.env.mongo)
+       const db = mongoose.connect(process.env.MONGODB);
+        console.log(db);
+        
     } catch (error) {
+        console.log(error);
         
     }
 }
 
-//middleware
-app.use("/auth", authrouter);
-app.use("/user", usersrouter);
-app.use("/hotels", hotelsrouter);
-app.use("/rooms", roomsrouter);
+// //middleware
+ app.use("/", authrouter);
+// app.use("/user", usersrouter);
+ app.use("/hotels", hotelsrouter);
+// app.use("/rooms", roomsrouter);
 
 
+// const savedHotel= new Hotel().save().then((data) =>{
+//     console.log(data);
+    
+// } )
 
 
-app.listen(port, ()=>{console.log(`App listing on port ${port}`);
+app.listen(port, ()=>{connect(); console.log(`App listing on port ${port}`);
 })

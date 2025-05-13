@@ -1,13 +1,13 @@
-const express = require("express");
+import { Router } from "express";
+const router = Router();
 
-const router = express.Router();
-
-router("/", (req, res) => {
- 
+router.get("/", (req,res) => {
+ res.send('hello world')
 });
-router("/register", (req, res) => {
+// router("/register", (req, res) => {
 
-});
-router("/login", (req, res) => {
+// });
+// router("/login", (req, res) => {
 
-});
+// });
+export default router; 
