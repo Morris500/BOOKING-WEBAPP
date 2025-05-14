@@ -35,6 +35,17 @@ const connect = async () => {
  app.use("/hotels", hotelsrouter);
 // app.use("/rooms", roomsrouter);
 
+app.use((err,req,res,next) => {
+    const errorStatus = err.status || 500;
+    const errormessage = err.message || "something went wrong";
+    return res.status(errorStatus).json({
+        success: false,
+        status: errorStatus,
+        message: errormessage,
+        stack: err.stack
+    })
+})
+
 
 // const savedHotel= new Hotel().save().then((data) =>{
 //     console.log(data);
