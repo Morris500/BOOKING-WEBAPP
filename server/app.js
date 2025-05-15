@@ -5,9 +5,9 @@ import dotenv from "dotenv";
 dotenv.config();
 import Hotel from "./models/hotel.js";
 
-import authrouter from "./Routes/auth.js";
+import authrouter from "./api/Routes/auth.js";
 // const usersrouter = require("./Routes/users");
-import hotelsrouter from "./Routes/hotels.js";
+import hotelsrouter from "./api/Routes/hotels.js";
 // const roomsrouter = require("./Routes/rooms");
 
 
