@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default:false, 
     }, 
-   time:{timestamps: true} 
+   //time:{timestamps: true} 
 })
 
 export default mongoose.model("User", userSchema);  
