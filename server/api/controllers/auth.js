@@ -1,4 +1,4 @@
-import { JsonWebTokenError } from "jsonwebtoken";
+
 import User from "../../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -33,7 +33,7 @@ if(!isPaswordcorrect){next(createError(400, 'wrongpassword or username'))}
 const token = jwt.sign({id: user._id, isAdmin: user.isAdmin},"secretkey")
 
 const {password, isAdmin, ...otherdetails} = user._doc;  
-res.status(200).json({...otherdetails});
+res.cookie("access-token", token,{httpOnly:true}).status(200).json({...otherdetails});
 } catch (error) {
     next(error);
 } 

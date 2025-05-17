@@ -3,6 +3,7 @@ import bodyparser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
+import cookieParser from "cookie-parser";
 import Hotel from "./models/hotel.js";
 
 import authrouter from "./api/Routes/auth.js";
@@ -14,6 +15,7 @@ import hotelsrouter from "./api/Routes/hotels.js";
 const app = express();
 const port = 3000;
 
+app.use(cookieParser());
  app.use(json());
  app.use(urlencoded({ extended: true }));
 
